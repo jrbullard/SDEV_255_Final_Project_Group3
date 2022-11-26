@@ -1,0 +1,45 @@
+nav {
+	font-size: 1.2em;
+	text-align: center;
+	background-color: rgb(216, 148, 234);
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+    border-bottom: 4px dotted #7f0f81;
+	position: relative;
+}
+nav a {
+	text-decoration:none;
+}
+nav a:link{color: #7f0f81;
+}
+nav a:hover{color: #060106;
+}
+
+h1 {
+    color: #7f0f81;
+    font-family: Verdana;
+    }
+
+h2 {
+    color: #7f0f81;
+    font-family: Verdana;
+    background-color: rgb(216, 148, 234);
+ }
+ .wrapper {
+    background-color: #f2c0f7 ;
+    padding: 1em;
+}
+
+@media (min-width: 600px){
+	h1{
+		font-size: 2em;
+		letter-spacing: .25em;
+	}
+}
+@media (min-width: 1024px){
+	
+	.wrapper{
+		margin: auto;
+		width : 80%
+	}
+}
