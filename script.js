@@ -1,1 +1,1 @@
-function goToCourse() {}
+function addCourse() {}
