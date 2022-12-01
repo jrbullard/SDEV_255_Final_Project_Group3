@@ -1,1 +1,3 @@
-function addCourse() {}
+function addCourse() {
+  onclick;
+}
