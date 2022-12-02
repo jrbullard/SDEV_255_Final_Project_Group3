@@ -16,7 +16,7 @@ router.get("/", function(req, res) {
     });
 });
 
-// Add a new song to the database
+// Add a new course to the database
 router.post("/", function(req, res) {
    const song = new Course(req.body);
    course.save(function(err, course) {
