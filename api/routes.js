@@ -6,6 +6,23 @@ const router = require("express").Router();
 
 const express = require("express");
 
+/*  Route  */
+router.get('/index', (req, res) => {
+    res.render('index');
+});
+
+router.get('/coursePage', (req, res) => {
+    res.render('coursePage');
+});
+
+router.get('/addCourses', (req, res) => {
+    res.render('addCourses');
+});
+
+router.get('/removeCourses', (req, res) => {
+    res.render('removeCourses');
+});
+
 /* Courses */
 // Get list of all courses in the database
 router.get("/courses", function(req, res) {    
