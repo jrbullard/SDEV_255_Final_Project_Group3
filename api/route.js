@@ -4,7 +4,7 @@ const router = require("express").Router();
 const express = require("express");
 
 // Get list of all courses in the database
-router.get("/", function(req, res) {    
+router.get("/course", function(req, res) {    
     Course.find(function(err, course) {
         if (err) {
             res.status(400).send(err);
@@ -17,8 +17,8 @@ router.get("/", function(req, res) {
 });
 
 // Add a new course to the database
-router.post("/", function(req, res) {
-   const song = new Course(req.body);
+router.post("/course", function(req, res) {
+   const course = new Course(req.body);
    course.save(function(err, course) {
       if (err) {
          res.status(400).send(err);
