@@ -15,6 +15,10 @@ nav a:link{color: #7f0f81;
 nav a:hover{color: #060106;
 }
 
+.courses {
+	font-family: Verdana;
+}
+
 h1 {
     color: #7f0f81;
     font-family: Verdana;
