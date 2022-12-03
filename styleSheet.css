@@ -18,6 +18,19 @@ nav a:hover{color: #060106;
 .courses {
 	font-family: Verdana;
 }
+.header img {
+	float: right;
+	width: 75px;
+	height: 75px;
+	background: #555;
+  }
+  
+  .header h1 {
+	position: relative;
+	top: 18px;
+	left: 10px;
+	padding: .5em;
+  }
 
 h1 {
     color: #7f0f81;
