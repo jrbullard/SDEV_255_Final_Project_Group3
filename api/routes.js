@@ -37,22 +37,68 @@ router.get("/courses", function(req, res) {
     });
 });
 
-// Add a new course to the database
+router.get("/courses/:id", function(req, res) {
+    // Use the ID in the URL path to find the course
+    Course.findById(req.params.id, function(err, course) {
+        if (err) {
+            res.status(400).send(err);
+        } 
+        else {
+            res.json(course);
+        }
+    });
+ });
+
 router.post("/courses", function(req, res) {
-   const course = new Course(req.body);
-   course.save(function(err, course) {
-      if (err) {
-         res.status(400).send(err);
-      } 
-      else {
-         res.status(201).json(course);
-      }
-   });
+    // Add a new course to the database
+    const course = new Course(req.body);
+    course.save(function(err, course) {
+        if (err) {
+            res.status(400).send(err);
+        } 
+        else {
+            res.status(201).json(course);
+            console.log(course._id);
+        }
+    });
 });
+
+router.put("/courses", function(req, res) {
+    // Course to update sent in body of request
+    const course = req.body;
+    console.log(course);
+    // Replace existing course fields with updated course
+    Course.updateOne(req.params.id, course, function(err, result) {
+       if (err) {
+          res.status(400).send(err);
+       } 
+       else if (result.n === 0) {
+           res.sendStatus(404);
+       } 
+       else {
+           res.sendStatus(204);
+       }
+    });
+ });
+
+ router.delete("/courses/:id", function(req, res) {
+    // Delete a course by ID
+    Course.deleteOne({_id: req.params.id}, function(err, result) {
+       if (err) {
+          res.status(400).send(err);
+       } 
+       else if (result.n === 0) {
+          res.sendStatus(404);
+       } 
+       else {
+          res.sendStatus(204);
+       }
+    });
+ });
 
 /* Student */
 // Get list of all students in the database
-router.get("/students", function(req, res) {    
+router.get("/students", function(req, res) {        
     Student.find(function(err, students) {
         if (err) {
             res.status(400).send(err);
@@ -64,18 +110,73 @@ router.get("/students", function(req, res) {
     });
 });
 
+router.get("/students/:id", function(req, res) {
+    // Use the ID in the URL path to find the student
+    Student.findById(req.params.id, function(err, student) {
+       if (err) {
+          res.status(400).send(err);
+       } 
+       else {
+          res.json(student);
+       }
+    });
+ });
+
+router.get("/students/courses/:id", function(req, res) {
+    // Use the ID in the URL path to find the student's registed courses
+    Student.findById(req.params.id, function(err, student) {
+        if (err) {
+           res.status(400).send(err);
+        } 
+        else {
+            res.json(student.reg_courses);    
+    }});
+ });
+
 /* Instructor */
-// Get list of all instructors in the database
-router.get("/instructors", function(req, res) {    
+// Get list of all instructors in the database 
+router.get("/instructors", function(req, res) {      
     Instructor.find(function(err, instructors) {
         if (err) {
             res.status(400).send(err);
         } 
         else {
             res.json(instructors);
-            console.log(instructors);            
+            //console.log(instructors);            
         }
     });
 });
+
+router.get("/instructors/:id", function(req, res) {
+    // Use the ID in the URL path to find the instructor
+    Instructor.findById(req.params.id, function(err, instructor) {
+       if (err) {
+          res.status(400).send(err);
+       } 
+       else {
+          res.json(instructor);
+       }
+    });
+ });
+
+router.get("/instructors/courses/:id", function(req, res) {    
+    // Use the ID to find the instructor's courses
+    Instructor.findById(req.params.id, function(err, instructor) {
+        if (err) {
+           res.status(400).send(err);
+        } 
+        else {
+            Course.find(function(err, courses) {
+                if (err) {
+                    res.status(400).send(err);
+                } 
+                else {
+                    let filteredCourses = courses.filter(item => instructor.create_courses.includes(item._id));
+                    res.json(filteredCourses);           
+                }
+            });
+        }
+    });
+ });
 
 module.exports = router;
