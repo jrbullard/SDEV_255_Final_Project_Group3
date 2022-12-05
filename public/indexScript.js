@@ -1,10 +1,8 @@
-addEventListener("DOMContentLoaded", async function() {
-    //document.querySelector("#deleteBtn").addEventListener("click", deleteCourse);
-    getAllCourses();
-    //document.querySelector("#deleteBtn").addEventListener("click", deleteCourse);
+addEventListener("DOMContentLoaded", async function() {    
+    getAllCourses();        
  });
  
- // Load all courses into the drop-down list
+ // Load all courses 
  async function getAllCourses() {
     const response = await fetch("/api/courses");
     if (response.ok) {
