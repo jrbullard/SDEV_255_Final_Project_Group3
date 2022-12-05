@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styleSheetForEjs.css" />
-    <title>Add Courses</title>    
+    <title>Update Courses</title>    
   </head>
   <body>
     <script src="/updateScript.js" defer></script>
@@ -18,19 +18,35 @@
         <!-- <li><a href="/removeCourses">Remove Courses</a></li> -->        
       </ul>      
     </nav>
-    <h1>Courses Available</h1>
+    <div class="wrapper">
     <div id="courselist">
-      <input type="checkbox" id="BIO101" name="class" value="BIO" />
-      <label for="class1"> BIO Biology 101</label><br />
-      <input type="checkbox" id="CHEM101" name="class" value="CHEM" />
-      <label for="class2"> CHEM CHemistry 101</label><br />
-      <input type="checkbox" id="ENG101" name="class" value="ENG" />
-      <label for="class3"> ENG English 101</label><br />
-      <input type="checkbox" id="HIST101" name="class" value="HIST" />
-      <label for="class4"> HIST American History 101</label><br />
-      <input type="checkbox" id="MATH101" name="class" value="MATH" />
-      <label for="class5"> MATH Algebra I</label><br />
     </div>
-    <button id="btn">Add Courses</button>
+    <h1>Update a Course</h1>
+    <form>
+      <label for="courseName">Course Name:</label>
+      <input type="text" id="courseName" name="courseName" required><br>
+      <label for="courseDept">Department:</label>
+      <select id="courseDept" name="courseDept" required>
+        <option value="BIO" selected>BIO</option>
+        <option value="CHEM">CHEM</option>
+        <option value="ENG">ENG</option>
+        <option value="HIST">HIST</option>
+        <option value="MATH">MATH</option>
+      </select><br>
+      <input type="text" style="display:none" id="courseId" name="courseId">
+      <label for="courseSection">Course Section:</label>
+      <input type="text" id="courseSection" name="courseSection" required><br>
+      <label for="courseTitle">Course Title:</label>
+      <input type="text" id="courseTitle" name="courseTitle" required><br>
+      <label for="instructor">Instructor Name:</label>
+      <input type="text" id="instructor" name="instructor" required><br><br>
+      <label for="credit">Credit Hrs:</label>
+      <input type="number" id="creditHr" min="1" max="5" name="creditHr" required><br><br>
+      <label for="courseStatus">Open:</label>
+      <input type="checkbox" id="courseStatus" name="courseStatus" value="true"><br><br>
+      <input type="button" value="Update" id="updateBtn">
+    </form>
+    <div id="error"></div>
   </body>
+  </div>
 </html>
