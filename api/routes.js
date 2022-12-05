@@ -19,6 +19,10 @@ router.get('/addCourses', (req, res) => {
     res.render('addCourses');
 });
 
+router.get('/updateCourse', (req, res) => {
+    res.render('updateCourse');
+});
+
 router.get('/removeCourses', (req, res) => {
     res.render('removeCourses');
 });
