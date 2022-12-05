@@ -16,12 +16,14 @@ async function addCourse() {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(course)
    });
+
    if (response.ok){
       const results = await response.json();
       alert("Added course: " +  results._id);
 
       document.querySelector("form").reset();
    }
+   
    else {
       document.querySelector("#error").innerHTML = "Cannot add course.";
    }
