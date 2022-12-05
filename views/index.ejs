@@ -6,27 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Course Selector</title>
-    <script src="indexScript.js"></script>
+    <script src="scripts.js"></script>
   </head>
   <body>
+    <script src="/indexScript.js" defer></script>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="coursePage.html">Courses</a>
+    <nav>
+      <ul>
+        <li><a href="/api/index">Home</a></li>
+        <li><a href="/api/coursePage">Courses</a></li>
+        <!-- <li><a href="/addCourses">Add Courses</a></li> -->
+        <!-- <li><a href="/updateCourses">Update Courses</a></li> -->
+        <!-- <li><a href="/removeCourses">Remove Courses</a></li> -->        
+      </ul>      
     </nav>
     <div class="wrapper">
-      <center><h1>Welcome [TeacherName]!</h1></center>
+      <div class="header">
+        <img src="/apple.png" alt="logo" />
+        <h1>Welcome [TeacherName]!</h1>
+      </div>
       <h2>Current Courses</h2>
-      <p>List of current courses that they have enrolled in</p>
+      <h3>List of current courses that they have enrolled in</h3>
+      <div id="courselist">
+
+      </div>
       <h2>To Add course</h2>
       <input
         type="button"
-        onclick="window.location.href='addCourses.html';"
+        onclick="window.location.href='addCourses';"
         value="Add"
       />
       <h2>To delete course</h2>
       <input
         type="button"
-        onclick="window.location.href='removeCourses.html';"
+        onclick="window.location.href='removeCourses';"
         value="Remove"
       />
       <br /><br /><br />
@@ -34,3 +47,4 @@
     </div>
   </body>
 </html>
+
