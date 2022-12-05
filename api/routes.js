@@ -69,11 +69,9 @@ router.post("/courses", function(req, res) {
 
 router.put("/courses", function(req, res) {
     // Course to update sent in body of request
-    console.log(req.params.id);
     const course = req.body;
-    console.log(course);
-    // Replace existing course fields with updated course
-    Course.updateOne(course._id, course, function(err, result) {
+      // Replace existing course fields with updated course
+    Course.updateOne({_id: course._id},course, function(err, result) {
        if (err) {
           res.status(400).send(err);
        } 
@@ -81,7 +79,7 @@ router.put("/courses", function(req, res) {
            res.sendStatus(404);
        } 
        else {
-           res.sendStatus(204);
+           res.status(204).json(course);
        }
     });
  });
