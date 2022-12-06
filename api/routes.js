@@ -7,8 +7,11 @@ const router = require("express").Router();
 const express = require("express");
 
 /*  Route  */
-router.get("/index", (req, res) => {
-  res.render("index");
+router.get("/teacherIndex", (req, res) => {
+  res.render("teacherIndex");
+});
+router.get("/studentIndex", (req, res) => {
+  res.render("studentIndex");
 });
 router.get("/home", (req, res) => {
   res.render("home");
@@ -17,11 +20,8 @@ router.get("/home", (req, res) => {
 router.get("/coursePage", (req, res) => {
   res.render("coursePage");
 });
-router.get("/teacherPage", (req, res) => {
-  res.render("teacherPage");
-});
-router.get("/studentPage", (req, res) => {
-  res.render("studentPage");
+router.get("/loginPage", (req, res) => {
+  res.render("loginPage");
 });
 
 router.get("/addCourses", (req, res) => {

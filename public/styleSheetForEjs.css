@@ -19,6 +19,20 @@ nav ul {
 	list-style: none;
 }
 
+.grid{
+	display:grid;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: 100%;
+}
+.firstLog {
+	grid-column: 1/2;
+	grid-row: 1/1;
+}
+.secondLog {
+	grid-column: 2/2;
+	grid-row: 1/1;
+}
+
 .courses {
 	font-family: Verdana;
 }
