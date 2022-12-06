@@ -14,6 +14,12 @@ router.get('/index', (req, res) => {
 router.get('/coursePage', (req, res) => {
     res.render('coursePage');
 });
+router.get('/teacherPage', (req, res) => {
+    res.render('teacherPage');
+});
+router.get('/studentPage', (req, res) => {
+    res.render('studentPage');
+});
 
 router.get('/addCourses', (req, res) => {
     res.render('addCourses');
