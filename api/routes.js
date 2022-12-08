@@ -10,11 +10,17 @@ const express = require("express");
 router.get("/teacherIndex", (req, res) => {
   res.render("teacherIndex");
 });
-router.get("/studentIndex", (req, res) => {
-  res.render("studentIndex");
+router.get("/addCoursesT", (req, res) => {
+  res.render("addCoursesT");
 });
-router.get("/home", (req, res) => {
-  res.render("home");
+router.get("/coursePageT", (req, res) => {
+  res.render("coursePageT");
+});
+router.get("/removeCoursesT", (req, res) => {
+  res.render("removeCoursesT");
+});
+router.get("/index", (req, res) => {
+  res.render("index");
 });
 
 router.get("/coursePage", (req, res) => {
