@@ -1,25 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styleSheetForEjs.css" />
-    <title>Add Courses</title>    
-  </head>
-  <body>
-    <script src="/studentEnrollCourseScript.js" defer></script>
-    <nav>
-      <ul>
-        <li><a href="/index">Home</a></li>
-        <li><a href="/coursePage">Courses</a></li>
-        <!-- <li><a href="/addCourses">Add Courses</a></li> -->
-        <!-- <li><a href="/updateCourses">Update Courses</a></li> -->
-        <!-- <li><a href="/removeCourses">Remove Courses</a></li> -->        
-      </ul>      
-    </nav>
+<%- include('../partials/header'); -%>
+<script src="/instructor/updateScript.js" defer></script>  
     <div class="wrapper">
-    <h1>Adding a Course</h1>
+    <div id="courselist">
+    </div>
+    <h1>Update a Course</h1>
     <form>
       <label for="courseName">Course Name:</label>
       <input type="text" id="courseName" name="courseName" required><br>
@@ -31,6 +15,7 @@
         <option value="HIST">HIST</option>
         <option value="MATH">MATH</option>
       </select><br>
+      <input type="text" style="display:none" id="courseId" name="courseId">
       <label for="courseSection">Course Section:</label>
       <input type="text" id="courseSection" name="courseSection" required><br>
       <label for="courseTitle">Course Title:</label>
@@ -41,14 +26,9 @@
       <input type="number" id="creditHr" min="1" max="5" name="creditHr" required><br><br>
       <label for="courseStatus">Open:</label>
       <input type="checkbox" id="courseStatus" name="courseStatus" value="true"><br><br>
-      <input type="button" value="Add" id="addBtn">
+      <input type="button" value="Update" id="updateBtn">
     </form>
-    <div id="courselist">
-    </div>
     <div id="error"></div>
   
     </div>
-    <br /><br /><br />
-        <center><footer>Copyright © 2022 Group 3 Final Project</footer></center>
-  </body>
-</html>
+<%- include('../partials/footer'); -%>

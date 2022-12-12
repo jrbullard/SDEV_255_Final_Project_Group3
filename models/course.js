@@ -1,7 +1,7 @@
-const db = require("../db");
+const mongoose = require("mongoose");
 
 // Create a model from the schema
-const Course = db.model("Course", {
+const Course = mongoose.model("Course", {
    name: {type: String, required: true },
    dept_code: String,
    title: { type: String, required: true },

@@ -1,0 +1,23 @@
+<%- include('../partials/header'); -%>
+  <body>
+    <script src="/instructor/instructorSignup.js" defer></script>
+    <div class="wrapper">
+        <form action="/instructor/signup" class="signin">
+          <h1>Instructor SignUp</h1>
+          <hr style="height: 1px;background-color:#7f0f81;"/>
+          <label for="fName">First Name</label>
+          <input type="text" name="fName" required />
+          <label for="lName">Last Name</label>
+          <input type="text" name="lName" required />
+          <label for="email">Email</label>
+          <input type="text" name="email" required />
+          <div class="email error"></div>
+          <label for="password">Password</label>
+          <input type="password" name="password" required />
+          <input type="text" name ="role" value="instructor" style="display:none;" />
+          <div class="password error"></div>
+          <button>Sign up</button>
+      </form>
+      <br /><br /><br />
+    </div>
+<%- include('../partials/footer'); -%>

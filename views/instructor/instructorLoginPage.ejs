@@ -1,0 +1,18 @@
+<%- include('../partials/header'); -%>
+  <body>
+    <script src="/instructor/instructorLogin.js" defer></script>
+    <div class="wrapper">
+      <form class="signin" method="get">
+        <h1>Instructor Login</h1>
+        <hr style="height: 1px;background-color:#7f0f81;"/>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" required />
+        <div class="email error"></div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+        <div class="password error"></div>
+        <input type="text" name="role" value="instructor" style="display:none;"/>
+        <button>Login</button>
+      </form>
+    </div>
+<%- include('../partials/footer'); -%>

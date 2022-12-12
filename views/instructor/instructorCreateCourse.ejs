@@ -1,25 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styleSheetForEjs.css" />
-    <title>Add Courses</title>    
-  </head>
-  <body>
-    <script src="/studentEnrollCourseScript.js" defer></script>
-    <nav>
-      <ul>
-        <li><a href="/index">Home</a></li>
-        <li><a href="/coursePage">Courses</a></li>
-        <!-- <li><a href="/addCourses">Add Courses</a></li> -->
-        <!-- <li><a href="/updateCourses">Update Courses</a></li> -->
-        <!-- <li><a href="/removeCourses">Remove Courses</a></li> -->        
-      </ul>      
-    </nav>
+<%- include('../partials/header'); -%>
     <div class="wrapper">
-    <h1>Adding a Course</h1>
+    <h1>Create a Course</h1>
     <form>
       <label for="courseName">Course Name:</label>
       <input type="text" id="courseName" name="courseName" required><br>
@@ -48,7 +29,4 @@
     <div id="error"></div>
   
     </div>
-    <br /><br /><br />
-        <center><footer>Copyright © 2022 Group 3 Final Project</footer></center>
-  </body>
-</html>
+    <%- include('../partials/footer'); -%>

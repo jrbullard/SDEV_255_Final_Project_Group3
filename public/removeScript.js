@@ -5,7 +5,7 @@ addEventListener("DOMContentLoaded", async function() {
  
  // Load all courses into the drop-down list
  async function getAllCourses() {
-    const response = await fetch("/api/courses");
+    const response = await fetch("/courses");
     if (response.ok) {
        const courses = await response.json();
        let html = "";
@@ -21,7 +21,7 @@ addEventListener("DOMContentLoaded", async function() {
     // Get the course ID of the selected course
     const courseId = document.querySelector("#courseDropDown option:checked").value;
  
-    const response = await fetch("/api/courses/" + courseId, {
+    const response = await fetch("/courses/" + courseId, {
        method: "DELETE"
     });
  

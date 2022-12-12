@@ -4,7 +4,7 @@ addEventListener("DOMContentLoaded", async function() {
     //document.querySelector("#deleteBtn").addEventListener("click", deleteCourse);
  });
  async function showDetail(courseId){
-    const response = await fetch("/api/courses/" + courseId);
+    const response = await fetch("/courses/" + courseId);
     if (response.ok) {
         const course = await response.json();
         let html = "<h1>Course Detail</h1><table>";
@@ -20,7 +20,7 @@ addEventListener("DOMContentLoaded", async function() {
  }
  // Load all courses into the drop-down list
  async function getAllCourses() {
-    const response = await fetch("/api/courses");
+    const response = await fetch("/courses");
     if (response.ok) {
        const courses = await response.json();
        let html = "<table>";

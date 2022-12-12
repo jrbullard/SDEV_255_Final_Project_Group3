@@ -1,24 +1,51 @@
+const { Router } = require('express');
 const Course = require("../models/course");
 const Student = require("../models/student");
 const Instructor = require("../models/instructor");
 
-const router = require("express").Router();
+
+
+const router = Router();
 
 const express = require("express");
+const instructorController = require('../controllers/instructorController');
+const studentController = require('../controllers/studentController');
 
 /*  Route  */
-router.get("/teacherIndex", (req, res) => {
-  res.render("teacherIndex");
+router.get("/", (req, res) => {
+  if(res.locals.user){
+    if(res.locals.role === 'instructor'){
+      res.render("instructor/instructorIndex");
+    } else if (res.locals.role === 'student') {
+      res.render("student/studentIndex");
+    }else {
+      res.render("index");
+    }
+  }
+  else {
+    res.render("index");
+  }
 });
-router.get("/addCoursesT", (req, res) => {
-  res.render("addCoursesT");
+router.get("/instructor/index", (req, res) => {
+  res.render("instructor/instructorIndex");
 });
+
+router.get("/instructor/createCourse", (req, res) => {
+  res.render("instructor/instructorCreateCourse");
+});
+
+router.get("/student/index", (req, res) => {
+  res.render("student/studentIndex");
+});
+
 router.get("/coursePageT", (req, res) => {
   res.render("coursePageT");
 });
 router.get("/removeCoursesT", (req, res) => {
   res.render("removeCoursesT");
 });
+
+
 router.get("/index", (req, res) => {
   res.render("index");
 });
@@ -26,16 +53,13 @@ router.get("/index", (req, res) => {
 router.get("/coursePage", (req, res) => {
   res.render("coursePage");
 });
-router.get("/loginPage", (req, res) => {
-  res.render("loginPage");
-});
 
 router.get("/addCourses", (req, res) => {
   res.render("addCourses");
 });
 
-router.get("/updateCourse", (req, res) => {
-  res.render("updateCourse");
+router.get("/instructor/updateCourse", (req, res) => {
+  res.render("instructor/instructorUpdateCourse");
 });
 
 router.get("/removeCourses", (req, res) => {
@@ -69,8 +93,10 @@ router.get("/courses/:id", function (req, res) {
 router.post("/courses", function (req, res) {
   // Add a new course to the database
   const course = new Course(req.body);
+  console.log(course);
   course.save(function (err, course) {
     if (err) {
+      console.log(err)
       res.status(400).send(err);
     } else {
       res.status(201).json(course);
@@ -109,6 +135,7 @@ router.delete("/courses/:id", function (req, res) {
 
 /* Student */
 // Get list of all students in the database
+
 router.get("/students", function (req, res) {
   Student.find(function (err, students) {
     if (err) {
@@ -185,5 +212,13 @@ router.get("/instructors/courses/:id", function (req, res) {
     }
   });
 });
+
+router.get('/instructorsGetOne', instructorController.get_Instructor);
+router.delete('/instructorsRemoveCourse/:id', instructorController.remove_InstructorCourse);
+router.put('/instructorsAddCourse', instructorController.add_InstructorCourse);
+
+router.get('/studentGetOne', studentController.get_Student);
+router.delete('/studentRemoveCourse/:id', studentController.remove_StudentCourse);
+router.put('/studenEnrollCourse', studentController.enroll_StudentCourse);
 
 module.exports = router;
