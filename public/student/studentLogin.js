@@ -24,7 +24,7 @@
                passwordError.textContent = data.errors.password;
            }
            if(data.user){
-               location.assign('/student/index');
+               location.assign('/student/studentIndex');
            }
        }
        catch(err){

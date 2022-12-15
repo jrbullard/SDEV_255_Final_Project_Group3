@@ -33,6 +33,12 @@ router.get("/instructor/index", (req, res) => {
 router.get("/instructor/createCourse", (req, res) => {
   res.render("instructor/instructorCreateCourse");
 });
+router.get("/student/shoppingCart", (req, res) => {
+  res.render("student/shoppingCart");
+});
+router.get("/student/studentIndex", (req, res) => {
+  res.render("student/studentIndex");
+});
 
 router.get("/student/index", (req, res) => {
   res.render("student/studentIndex");
