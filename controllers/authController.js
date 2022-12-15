@@ -35,7 +35,7 @@ const handleErrors = (err) => {
 };
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id, role) => {
-  return jwt.sign({ id, role }, "school project authication group3", {
+  return jwt.sign({ id, role }, "school project authentication group3", {
     expiresIn: maxAge,
   });
 };
