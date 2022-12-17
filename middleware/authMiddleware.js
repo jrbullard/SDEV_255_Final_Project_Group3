@@ -23,17 +23,17 @@ const requireAuth = (req,res,next) => {
 
 const checkUser =  (req,res,next) => {
     const token = req.cookies.jwt;
-    console.log("ABCD");
+    //console.log("ABCD");
     if(token){
         jwt.verify(token, 'school project authication group3', async (err, decodedToken) => {
             if(err){
-                console.log(err.message);
+                //console.log(err.message);
                 res.locals.user = null;
                 res.locals.role = null;
                 next();
             }else{
-                console.log(decodedToken);
-                console.log(decodedToken.role);
+                // console.log(decodedToken);
+                // console.log(decodedToken.role);
                 //let user = await User.findById(decodedToken.id);
                 if(decodedToken.role == 'instructor'){
                     let user = await Instructor.findById(decodedToken.id);

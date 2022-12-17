@@ -16,7 +16,7 @@ const instructorSchema = new mongoose.Schema({
       required: [true, 'Please enter a password'],
       minlength: [6, 'Minimum password length is 6 characters']
     },     
-   create_courses: [ String ]   
+   create_courses: [ String ]
 });
 instructorSchema.post('save', function(doc,next){
    console.log('new user was created & saved', doc);

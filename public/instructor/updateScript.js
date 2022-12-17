@@ -1,7 +1,16 @@
-addEventListener("DOMContentLoaded", async function() {
-    document.querySelector("#updateBtn").addEventListener("click", updateCourse);
-    getAllCourses();
- });
+ const form = document.querySelector('form');
+
+ form.addEventListener('submit', async (e)=>{
+   e.preventDefault();
+   this.updateCourse();
+});
+
+this.FillCourse();
+
+async function FillCourse(){
+   let courseId = document.querySelector("#courseId").value; 
+   await this.showDetail(courseId)
+}
 
 async function getAllCourses() {
    const response = await fetch("/courses");
@@ -25,7 +34,6 @@ async function showDetail(courseId){
     const response = await fetch("/courses/" + courseId);
     if (response.ok) {
         const course = await response.json();
-        document.querySelector("#courseId").value = courseId;
         document.querySelector("#courseName").value = course.name;
         document.querySelector("#courseDept").value = course.dept_code;
         document.querySelector("#courseTitle").value = course.title;
@@ -52,11 +60,11 @@ async function updateCourse() {
       body: JSON.stringify(course)
    });
    if (response.ok){
-      alert("Update course success!");
       document.querySelector("form").reset();
-      getAllCourses();
+      alert("Update course success! Return to list page.");
+      location.assign('/instructor/index');
    }
    else {
-      document.querySelector("#error").innerHTML = "Cannot update course.";
+      document.querySelector(".updatecourse.error").innerHTML = "Cannot update course.";
    }
 }

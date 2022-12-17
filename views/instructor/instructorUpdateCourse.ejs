@@ -1,34 +1,70 @@
 <%- include('../partials/header'); -%>
-<script src="/instructor/updateScript.js" defer></script>  
-    <div class="wrapper">
-    <div id="courselist">
-    </div>
-    <h1>Update a Course</h1>
-    <form>
-      <label for="courseName">Course Name:</label>
-      <input type="text" id="courseName" name="courseName" required><br>
-      <label for="courseDept">Department:</label>
-      <select id="courseDept" name="courseDept" required>
-        <option value="BIO" selected>BIO</option>
-        <option value="CHEM">CHEM</option>
-        <option value="ENG">ENG</option>
-        <option value="HIST">HIST</option>
-        <option value="MATH">MATH</option>
-      </select><br>
-      <input type="text" style="display:none" id="courseId" name="courseId">
-      <label for="courseSection">Course Section:</label>
-      <input type="text" id="courseSection" name="courseSection" required><br>
-      <label for="courseTitle">Course Title:</label>
-      <input type="text" id="courseTitle" name="courseTitle" required><br>
-      <label for="instructor">Instructor Name:</label>
-      <input type="text" id="instructor" name="instructor" required><br><br>
-      <label for="credit">Credit Hrs:</label>
-      <input type="number" id="creditHr" min="1" max="5" name="creditHr" required><br><br>
-      <label for="courseStatus">Open:</label>
-      <input type="checkbox" id="courseStatus" name="courseStatus" value="true"><br><br>
-      <input type="button" value="Update" id="updateBtn">
-    </form>
-    <div id="error"></div>
-  
-    </div>
+<style>
+  .formTb td{
+    padding-right:30px;
+  }
+</style>
+<script src="/instructor/updateScript.js" defer></script>
+<div class="wrapper">
+  <h1>Update Course</h1>
+  <form>
+    <table class="formTb" style="width: 80%;">
+      <tr>
+        <td>
+          <label for="courseName">Course Name:</label>
+          <input type="text" id="courseName" name="courseName" required /><br />
+        </td>
+        <td>
+          <label for="courseDept">Department:</label>
+          <select id="courseDept" name="courseDept" style="font-size:1.2em;" required>
+            <option value="BIO" selected>BIO</option>
+            <option value="CHEM">CHEM</option>
+            <option value="ENG">ENG</option>
+            <option value="HIST">HIST</option>
+            <option value="MATH">MATH</option></select>
+        </td>
+        <td>
+          <input
+            type="text"
+            style="display: none"
+            id="courseId"
+            name="courseId"
+            value="<%= id %>"
+          />
+          <label for="courseSection">Course Section:</label>
+          <input type="text" id="courseSection" name="courseSection" required />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="courseTitle">Course Title:</label>
+          <input type="text" id="courseTitle" name="courseTitle" required />
+        </td>
+        <td>
+          <label for="instructor">Instructor Name:</label>
+          <input type="text" id="instructor" name="instructor" required disabled />
+        </td>
+        <td>
+          <label for="credit">Credit Hrs:</label>
+          <input type="number" id="creditHr" min="1" max="5" name="creditHr" required />
+        </td>
+      </tr>
+      <tr>
+        <td>          
+          <label for="courseStatus" style="display: inline; margin: 0px 0 10px;">Open:</label>
+          <input type="checkbox" id="courseStatus" name="courseStatus"style="padding: 0px 0px;width:auto;"/></td>
+        <td>
+          <button id="updateBtn" type="submit" style="background-color: rgb(171, 95, 192);margin-top: 10px;font-size: 0.9em;float: right;" >Update Course</button>
+        </td>
+        <td>
+          <button id="cancelBtn" style="background-color: rgb(171, 95, 192);margin-top: 10px;font-size: 0.9em;float: left;" onclick="window.location.href='/instructor/index';">Cancel</button>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+    </table>
+  </form>
+  <div id="error" class="updatecourse error"></div>
+</div>
 <%- include('../partials/footer'); -%>

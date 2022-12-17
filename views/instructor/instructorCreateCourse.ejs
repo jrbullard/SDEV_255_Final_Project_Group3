@@ -1,32 +1,65 @@
 <%- include('../partials/header'); -%>
-    <div class="wrapper">
+<style>
+  .formTb td{
+    padding-right:30px;
+  }
+</style>
+  <script src="/instructor/instructorCreateCourseScript.js" defer></script>
+  <div class="wrapper">
     <h1>Create a Course</h1>
     <form>
-      <label for="courseName">Course Name:</label>
-      <input type="text" id="courseName" name="courseName" required><br>
-      <label for="courseDept">Department:</label>
-      <select id="courseDept" name="courseDept" required>
-        <option value="BIO" selected>BIO</option>
-        <option value="CHEM">CHEM</option>
-        <option value="ENG">ENG</option>
-        <option value="HIST">HIST</option>
-        <option value="MATH">MATH</option>
-      </select><br>
-      <label for="courseSection">Course Section:</label>
-      <input type="text" id="courseSection" name="courseSection" required><br>
-      <label for="courseTitle">Course Title:</label>
-      <input type="text" id="courseTitle" name="courseTitle" required><br>
-      <label for="instructor">Instructor Name:</label>
-      <input type="text" id="instructor" name="instructor" required><br><br>
-      <label for="credit">Credit Hrs:</label>
-      <input type="number" id="creditHr" min="1" max="5" name="creditHr" required><br><br>
-      <label for="courseStatus">Open:</label>
-      <input type="checkbox" id="courseStatus" name="courseStatus" value="true"><br><br>
-      <input type="button" value="Add" id="addBtn">
+      <table class="formTb" style="width: 80%;">
+        <tr>
+          <td>
+            <label for="courseName">Course Name:</label>
+            <input type="text" id="courseName" name="courseName" required>
+            <div class="courseName error"></div>
+          </td>
+          <td>
+          <label for="courseDept">Department:</label>
+          <select id="courseDept" name="courseDept" style="font-size:1.2em;" required>
+            <option value="BIO" selected>BIO</option>
+            <option value="CHEM">CHEM</option>
+            <option value="ENG">ENG</option>
+            <option value="HIST">HIST</option>
+            <option value="MATH">MATH</option>
+          </select> </td>
+          <td>
+          <label for="courseSection">Course Section:</label>
+          <input type="text" id="courseSection" name="courseSection" required><br>
+          <div class="courseSection error"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <label for="courseTitle">Course Title:</label>
+          <input type="text" id="courseTitle" name="courseTitle" required><br>
+          <div class="courseTitle error"></div>
+          </td>
+          <td>
+            <label for="instructor">Instructor Name:</label>
+            <input type="text" id="instructor" name="instructor" required disabled>
+          </td>
+          <td>
+            <label for="creditHr">Credit Hrs:</label>
+            <input type="number" id="creditHr" min="1" max="5" name="creditHr" required>
+            <div class="creditHr error"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="courseStatus" style="display: inline; margin: 0px 0 10px;">Open:</label>
+            <input type="checkbox" id="courseStatus" name="courseStatus" style="padding: 0px 0px;width:auto;" checked>
+          </td>
+          <td>
+            <button id="addCourseBtn" type="submit" style="background-color: rgb(171, 95, 192);margin-top: 10px;font-size: 0.9em;float: right;">Add Course</button>
+          </td><td>
+            <button id="cancelBtn" style="background-color: rgb(171, 95, 192);margin-top: 10px;font-size: 0.9em;float: left;" onclick="window.location.href='/instructor/index';">Cancel</button>
+          </td>
+        </tr>
+      </table>
     </form>
-    <div id="courselist">
-    </div>
-    <div id="error"></div>
-  
-    </div>
-    <%- include('../partials/footer'); -%>
+    <div class="addcourse error"></div>
+
+  </div>
+  <%- include('../partials/footer'); -%>

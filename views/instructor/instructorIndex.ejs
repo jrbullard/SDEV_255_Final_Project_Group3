@@ -2,18 +2,32 @@
   <script src="/instructor/instructorScripts.js" defer></script>  
     <div class="wrapper">
       <h2>Current Courses</h2>
-      <h3>List of current courses</h3>
-      <div id="courselist">
-
-      </div>
-      <div id="courseDetail">
-      
-      </div>
-      <div class="error" name="errorMessage" id="errorMessage"></div>
-      <table>
+      <table style="width:100%;height: 1px;">
         <tr>
-          <td><button onclick="window.location.href='/instructor/createCourse';">Create Course</button></td>
-          <td><button onclick="window.location.href='/instructor/updateCourse';">Update Course</button></td>
+          <td><h1>List of current courses</h1><hr/></td>
+          <td><h1>Course Detail</h1><hr/></td>
+        </tr>
+        <tr>
+          <td style="width:65%; vertical-align: top;">
+            <div id="courselist">
+
+            </div>
+          </td>
+          <td style="width:35%; vertical-align: top;">
+            <div id="courseDetail" style="height:100%;padding-top: 0px; margin-top: 0;">
+              
+            </div>
+          </td>
+        </tr>
+      <tr>
+        <td colspan="2">
+          <div class="error" name="errorMessage" id="errorMessage"></div>
+        </td>
+      </tr>
+        <tr>
+          <td colspan="2" >
+            <button style="margin: auto;display:block;background-color: rgb(171, 95, 192);"  onclick="window.location.href='/instructor/createCourse';">Create Course</button>
+          </td>
         </tr>
       </table>
     </div>

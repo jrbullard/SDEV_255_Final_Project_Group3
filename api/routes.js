@@ -2,7 +2,7 @@ const { Router } = require('express');
 const Course = require("../models/course");
 const Student = require("../models/student");
 const Instructor = require("../models/instructor");
-
+const {requireAuth, checkUser} = require('../middleware/authMiddleware');
 
 
 const router = Router();
@@ -10,6 +10,7 @@ const router = Router();
 const express = require("express");
 const instructorController = require('../controllers/instructorController');
 const studentController = require('../controllers/studentController');
+const courseController = require('../controllers/courseController');
 
 /*  Route  */
 router.get("/", (req, res) => {
@@ -26,11 +27,11 @@ router.get("/", (req, res) => {
     res.render("index");
   }
 });
-router.get("/instructor/index", (req, res) => {
+router.get("/instructor/index",requireAuth, (req, res) => {
   res.render("instructor/instructorIndex");
 });
 
-router.get("/instructor/createCourse", (req, res) => {
+router.get("/instructor/createCourse",requireAuth, (req, res) => {
   res.render("instructor/instructorCreateCourse");
 });
 router.get("/student/shoppingCart", (req, res) => {
@@ -64,8 +65,8 @@ router.get("/addCourses", (req, res) => {
   res.render("addCourses");
 });
 
-router.get("/instructor/updateCourse", (req, res) => {
-  res.render("instructor/instructorUpdateCourse");
+router.get("/instructor/updateCourse/:id",requireAuth, (req, res) => {
+  res.render("instructor/instructorUpdateCourse", {id : req.params.id});
 });
 
 router.get("/removeCourses", (req, res) => {
@@ -73,58 +74,18 @@ router.get("/removeCourses", (req, res) => {
 });
 
 /* Courses */
-// Get list of all courses in the database
-router.get("/courses", function (req, res) {
-  Course.find(function (err, courses) {
-    if (err) {
-      res.status(400).send(err);
-    } else {
-      res.json(courses);
-      //console.log(courses);
-    }
-  });
-});
 
-router.get("/courses/:id", function (req, res) {
-  // Use the ID in the URL path to find the course
-  Course.findById(req.params.id, function (err, course) {
-    if (err) {
-      res.status(400).send(err);
-    } else {
-      res.json(course);
-    }
-  });
-});
+// List all available courses from the school
+router.get("/courses",requireAuth, courseController.getCourses);
 
-router.post("/courses", function (req, res) {
-  // Add a new course to the database
-  const course = new Course(req.body);
-  console.log(course);
-  course.save(function (err, course) {
-    if (err) {
-      console.log(err)
-      res.status(400).send(err);
-    } else {
-      res.status(201).json(course);
-      console.log(course._id);
-    }
-  });
-});
+// Get one course by course ID 
+router.get("/courses/:id",requireAuth, courseController.getOneCourse);
 
-router.put("/courses", function (req, res) {
-  // Course to update sent in body of request
-  const course = req.body;
-  // Replace existing course fields with updated course
-  Course.updateOne({ _id: course._id }, course, function (err, result) {
-    if (err) {
-      res.status(400).send(err);
-    } else if (result.n === 0) {
-      res.sendStatus(404);
-    } else {
-      res.status(204).json(course);
-    }
-  });
-});
+// Create one course
+router.post("/courses",requireAuth, courseController.createCourse);
+
+// Update one course
+router.put("/courses",requireAuth, courseController.updateCourse);
 
 router.delete("/courses/:id", function (req, res) {
   // Delete a course by ID
@@ -201,30 +162,33 @@ router.get("/instructors/:id", function (req, res) {
 
 router.get("/instructors/courses/:id", function (req, res) {
   // Use the ID to find the instructor's courses
-  Instructor.findById(req.params.id, function (err, instructor) {
-    if (err) {
-      res.status(400).send(err);
-    } else {
-      Course.find(function (err, courses) {
-        if (err) {
-          res.status(400).send(err);
-        } else {
-          let filteredCourses = courses.filter((item) =>
-            instructor.create_courses.includes(item._id)
-          );
-          res.json(filteredCourses);
-        }
-      });
-    }
-  });
+  // Instructor.findById(req.params.id, function (err, instructor) {
+  //   if (err) {
+  //     res.status(400).send(err);
+  //   } else {
+  //     Course.find(function (err, courses) {
+  //       if (err) {
+  //         res.status(400).send(err);
+  //       } else {
+  //         let filteredCourses = courses.filter((item) =>
+  //           instructor.create_courses.includes(item._id)
+  //         );
+  //         res.json(filteredCourses);
+  //       }
+  //     });
+  //   }
+  // });
 });
 
-router.get('/instructorsGetOne', instructorController.get_Instructor);
-router.delete('/instructorsRemoveCourse/:id', instructorController.remove_InstructorCourse);
-router.put('/instructorsAddCourse', instructorController.add_InstructorCourse);
+// retrieve one instructor by id
+router.get('/instructorsGetOne',requireAuth, instructorController.get_Instructor);
+// remove one course from instructor
+router.delete('/instructorsRemoveCourse/:id',requireAuth, instructorController.remove_InstructorCourse);
+// Add one course for instructor
+router.post('/instructorsAddCourse',requireAuth, instructorController.add_InstructorCourse);
 
-router.get('/studentGetOne', studentController.get_Student);
-router.delete('/studentRemoveCourse/:id', studentController.remove_StudentCourse);
-router.put('/studenEnrollCourse', studentController.enroll_StudentCourse);
+router.get('/studentGetOne',requireAuth, studentController.get_Student);
+router.delete('/studentRemoveCourse/:id',requireAuth, studentController.remove_StudentCourse);
+router.put('/studenEnrollCourse',requireAuth, studentController.enroll_StudentCourse);
 
 module.exports = router;

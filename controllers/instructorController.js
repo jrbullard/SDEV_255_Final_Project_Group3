@@ -6,7 +6,7 @@ module.exports.get_Instructor = async (req, res) => {
   if (token) {
     jwt.verify(
       token,
-      "school project authentication group3",
+      "school project authication group3",
       async (err, decodedToken) => {
         if (err) {
           res.json(null);
@@ -22,63 +22,63 @@ module.exports.get_Instructor = async (req, res) => {
 };
 
 module.exports.add_InstructorCourse = async (req, res) => {
-  const token = req.cookies.jwt;
-  const courseID = req.body.courseID;
-  if (token) {
-    jwt.verify(
-      token,
-      "school project authentication group3",
-      async (err, decodedToken) => {
-        if (err) {
-          res.json(null);
-        } else {
-          let user = await Instructor.findById(decodedToken.id);
-          let filteredCourses = user.create_courses;
-          filteredCourses = filteredCourses.filter((x) => x != courseID);
-          user.create_courses = filteredCourses.push(courseID);
-          Instructor.updateOne({ _id: user._id }, user, function (err, result) {
-            if (err) {
-              res.status(400).send(err);
-            } else if (result.n === 0) {
-              res.sendStatus(404);
-            } else {
-              res.status(204).json(user);
+    const token = req.cookies.jwt;
+    const courseID = req.body.courseID;
+    
+    if(token){
+        jwt.verify(token, 'school project authication group3', async (err, decodedToken) => {
+            if(err){
+                res.json(null);
+            }else{
+                let newCourses =[];
+                let user = await Instructor.findById(decodedToken.id);
+                let filteredCourses = Object.values(user.create_courses);
+                filteredCourses = filteredCourses.filter(x => x != courseID);
+                filteredCourses.forEach(x => {
+                    newCourses.push(x);
+                });
+                newCourses.push(courseID);
+                user.create_courses = newCourses;
+                Instructor.updateOne({ _id: user._id }, user, function (err, result) {
+                    if (err) {
+                        res.status(400).send(err);
+                    } else if (result.n === 0) {
+                        res.sendStatus(404);
+                    } else {
+                        res.status(200).send(user);
+                    }
+                });
             }
-          });
-        }
-      }
-    );
-  } else {
-    res.json(null);
-  }
-};
+        });
+    }
+    else{
+        res.json(null);
+    }
+}
 module.exports.remove_InstructorCourse = async (req, res) => {
-  const token = req.cookies.jwt;
-  const courseID = req.params.id;
-  if (token) {
-    jwt.verify(
-      token,
-      "school project authentication group3",
-      async (err, decodedToken) => {
-        if (err) {
-          res.json(null);
-        } else {
-          let user = await Instructor.findById(decodedToken.id);
-          let filteredCourses = user.create_courses;
-          user.create_courses = filteredCourses.filter((x) => x != courseID);
-          Instructor.updateOne({ _id: user._id }, user, function (err, result) {
-            if (err) {
-              res.status(400).send(err);
-            } else if (result.n === 0) {
-              res.sendStatus(404);
-            } else {
-              res.status(204).json(user);
+    const token = req.cookies.jwt;
+    const courseID = req.params.id;
+     if(token){
+        jwt.verify(token, 'school project authication group3', async (err, decodedToken) => {
+            if(err){
+                res.json(null);
+            }else{
+                let user = await Instructor.findById(decodedToken.id);
+                let filteredCourses = user.create_courses;
+                user.create_courses = filteredCourses.filter(x => x !=courseID);
+                Instructor.updateOne({ _id: user._id }, user, function (err, result) {
+                    if (err) {
+                        res.status(400).send(err);
+                    } else if (result.n === 0) {
+                        res.sendStatus(404);
+                    } else {
+                        res.status(204).json(user);
+                    }
+                });
             }
-          });
-        }
-      }
-    );
-  } else {
-    res.json(null);
-  }
-};
+        });
+    }
+    else{
+        res.json(null);
+    }
+}
