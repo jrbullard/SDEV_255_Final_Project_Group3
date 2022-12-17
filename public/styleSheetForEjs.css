@@ -131,6 +131,12 @@ h1 a.btn{
 	left: 10px;
 	padding-bottom: .5em;
   }
+  
+.center {
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto;
+}
 
 h1 {
     color: #7f0f81;
