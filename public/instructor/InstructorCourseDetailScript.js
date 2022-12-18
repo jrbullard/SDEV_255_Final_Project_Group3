@@ -21,6 +21,5 @@ async function showDetail(courseId){
          <tr><td>IsOpen:</td><td>${course.is_open ? 'Yes' : 'No'}</td></tr>`; 
        html += "</table>"
        courseDetail.innerHTML = html;
-       errorMessage.innerHTML = '';
    }
 }
