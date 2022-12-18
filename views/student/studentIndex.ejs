@@ -10,19 +10,73 @@
 </head>
 <body> 
   <nav>
+    <h1><a href="/">Group 3 Final Project</a></h1>
   <ul>
-    <li><a href="/student/studentIndex">Home</a></li>
-    <li><a href="/coursePage">Courses</a></li>
-    <li><a href="/addCourses">Add Courses</a></li>
-    <li><a href="/removeCourses">Remove Courses</a></li>
+    <li>Welcome, <%= user.email %></li>
+    <li><a href="/student/index">Home</a></li>    
     <li><a href="/student/shoppingCart">Cart</a></li> 
-    <li><a href="/index">Logout</a></li> 
+    <li><a href="/logout">Logout</a></li> 
   </ul>  
-</nav> 
-    <div class="wrapper">
-      <h2>Current Courses</h2>
+  </nav> 
+    <div class="wrapper" style="width: 70%;">
+      <lable><h3>Search Your Courses</h3></lable>      
+      <input list="courses" id="search" name="search" style="width: 20%;">
+        <datalist id="courses">
+            <option value="MATH" >
+            <option value="ENG" >
+            <option value="BIO" >
+            <option value="CHEM" >
+            <option value="HIST" >
+        </datalist>
+      <button type="button" onclick="getAllCourses()">Search</button><br><br>
+
+      <h2>Course List</h2>
       <div id="courselist">
+        <!-- list all available courses -->
       </div>
+
+      <div id="courseDetail" style="width: 50%; height:100%;padding-top: 0px; text-align: center;margin: auto;">
+        
+      </div>
+
+      <div class="studentCourse error" name="errorMessage" id="errorMessage"></div>
+
+  <style>
+    table {width:100%; table-layout: fixed;}
+    table td {word-wrap:break-word;}
+  </style>
+    <!-- <lable>Search Your Courses</lable>
+    <input type="text" style="display: float" id="search" /> -->
+
+    <!-- <div class="wrapper">
+        <h2>Current Courses</h2>
+        <table style="width:100%;height: 1px;">
+          <tr>
+            <td style="width:50%; vertical-align: top;">
+              <div id="courselist" style="float: left;">
+  
+              </div>
+            </td>
+            <td style="width:50%; vertical-align: top;">
+              <div id="studentCourselist" style="float: right;">
+        
+              </div>
+            </td>
+          </tr>
+          <tr style="width:100%;">
+            <td colspan="2">
+              <div id="courseDetail" style="height:100%;padding-top: 0px; text-align: center;margin: auto;">
+        
+              </div>
+            </td>
+          </tr>
+        <tr>
+          <td colspan="2">
+            <div class="studentCourse error" name="errorMessage" id="errorMessage"></div>
+          </td>
+        </tr>
+        </table>
+    </div> --> 
 <%- include('../partials/footer'); -%>
   
 </body>

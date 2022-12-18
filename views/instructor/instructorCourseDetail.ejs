@@ -1,0 +1,25 @@
+<%- include('../partials/header'); -%>
+</style>
+<script src="/instructor/instructorCourseDetailScript.js" defer></script>
+<div class="wrapper" style="width: 30%;">
+    <td>
+        <input
+          type="text"
+          style="display: none"
+          id="courseId"
+          name="courseId"
+          value="<%= id %>"
+        />
+    <h1>Course Detail</h1>    
+
+    <td style="width:100%; vertical-align: top; text-align: center;">
+        <div id="courseDetail" style="height:100%;padding-top: 0px; margin-top: 0;">
+            <!-- course detail -->
+        </div>
+    </td>
+    <button onclick="window.location.href='/';">Return Home</button>
+</div>   
+
+<%- include('../partials/footer'); -%>
+
+

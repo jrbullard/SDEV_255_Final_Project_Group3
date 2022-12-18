@@ -7,6 +7,7 @@ addEventListener("DOMContentLoaded", async function() {
  let  courseDetail =document.querySelector("#courseDetail");
 //Show one course
 async function showDetail(courseId){
+   location.assign('/instructor/courseDetail/'+courseId);
    const response = await fetch("/courses/" + courseId);
    if (response.ok) {
        const course = await response.json();
@@ -66,14 +67,14 @@ async function removeDetail(courseId){
     const response = await fetch("/courses");
     if (response.ok) {
       const courses = await response.json();
-      let html = "<table><tr><td>Name</td><td>Section</td><td>Title</td><td>Instructor</td><td>Open</td><td></td><td></td><td></td></tr>";
+      let html = "<table><tr><td>Name</td><td>Title</td><td>Instructor</td><td></td><td></td><td></td></tr>";
       for (let course of courses) {
          html += `<tr>
          <td>${course.name}</td>
-         <td>${course.section}</td>
+         
          <td>${course.title}</td>
          <td>${course.instructor}</td>
-         <td>${course.is_open? 'Yes' : 'No'}</td>
+         
          <td><button onclick="showDetail('${course._id}')">View Detail</button></td>`;
          if (insCourses.includes(course._id)){
             html += `<td><button onclick="updateDetail('${course._id}')">Update</button></td>`;

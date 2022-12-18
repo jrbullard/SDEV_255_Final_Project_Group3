@@ -31,46 +31,28 @@ router.get("/instructor/index",requireAuth, (req, res) => {
   res.render("instructor/instructorIndex");
 });
 
+router.get("/instructor/courseDetail/:id",requireAuth, (req, res) => {
+  res.render("instructor/instructorCourseDetail", {id : req.params.id});
+  console.log({id : req.params.id});
+});
+
 router.get("/instructor/createCourse",requireAuth, (req, res) => {
   res.render("instructor/instructorCreateCourse");
 });
-router.get("/student/shoppingCart", (req, res) => {
+router.get("/student/shoppingCart",requireAuth, (req, res) => {
   res.render("student/shoppingCart");
 });
-router.get("/student/studentIndex", (req, res) => {
+
+router.get("/student/index",requireAuth, (req, res) => {
   res.render("student/studentIndex");
 });
-
-router.get("/student/index", (req, res) => {
-  res.render("student/studentIndex");
-});
-
-router.get("/coursePageT", (req, res) => {
-  res.render("coursePageT");
-});
-router.get("/removeCoursesT", (req, res) => {
-  res.render("removeCoursesT");
-});
-
 
 router.get("/index", (req, res) => {
   res.render("index");
 });
 
-router.get("/coursePage", (req, res) => {
-  res.render("coursePage");
-});
-
-router.get("/addCourses", (req, res) => {
-  res.render("addCourses");
-});
-
 router.get("/instructor/updateCourse/:id",requireAuth, (req, res) => {
   res.render("instructor/instructorUpdateCourse", {id : req.params.id});
-});
-
-router.get("/removeCourses", (req, res) => {
-  res.render("removeCourses");
 });
 
 /* Courses */
@@ -102,7 +84,6 @@ router.delete("/courses/:id", function (req, res) {
 
 /* Student */
 // Get list of all students in the database
-
 router.get("/students", function (req, res) {
   Student.find(function (err, students) {
     if (err) {
@@ -158,26 +139,6 @@ router.get("/instructors/:id", function (req, res) {
       res.json(instructor);
     }
   });
-});
-
-router.get("/instructors/courses/:id", function (req, res) {
-  // Use the ID to find the instructor's courses
-  // Instructor.findById(req.params.id, function (err, instructor) {
-  //   if (err) {
-  //     res.status(400).send(err);
-  //   } else {
-  //     Course.find(function (err, courses) {
-  //       if (err) {
-  //         res.status(400).send(err);
-  //       } else {
-  //         let filteredCourses = courses.filter((item) =>
-  //           instructor.create_courses.includes(item._id)
-  //         );
-  //         res.json(filteredCourses);
-  //       }
-  //     });
-  //   }
-  // });
 });
 
 // retrieve one instructor by id

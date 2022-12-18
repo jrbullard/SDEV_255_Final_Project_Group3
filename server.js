@@ -5,11 +5,9 @@ const authRoutes = require('./api/authRoutes');
 const cookieParser = require('cookie-parser');
 const {requireAuth, checkUser} = require('./middleware/authMiddleware');
 
-
 const app = express();
 
 app.set('view engine', 'ejs');
-
 
 // Middleware that parses HTTP requests with JSON body
 app.use(express.json());
@@ -25,4 +23,3 @@ app.get('*', checkUser);
 app.use("/", require("./api/routes"));
 app.use("/", require("./api/authRoutes"));
 
-//app.listen(3000);
